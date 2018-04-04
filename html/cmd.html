@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>cmd frontend</title>
+        <style type="text/css">
+            html,body{
+                height:95%;
+                background: black;
+                color: white;
+                font-size:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="msg" style="height:20px; font-size:10px;"></div>
+        <div style="height:98%;margin-top:5px;">
+            <textarea id="output" style="width:100%;height:100%;margin:0px;padding:0px;" readonly="readonly"></textarea>
+        </div>
+        <div style="margin-top:10px;margin-right:2px;">
+            <input id="input" type="text" style="width:100%;" 
+            onkeypress="if(event.keyCode==13) {send_command(this.value);this.value='';return false;}" 
+            onfocus="if(this.value==' input command here'){this.value='';} this.style.color='black';" 
+            onblur="if(this.value==''){this.value=' input command here';this.style.color='gray';}" />
+        </div>
+    </body>
+    <script>
+        // helper function: log message to screen
+        function print_log(msg) {
+            document.getElementById('msg').textContent = "[" + new Date().toLocaleTimeString() + "] " +  msg;
+        }
+
+        function print_output(output) {
+            document.getElementById('output').textContent += output + "\n";
+        }
+
+        // setup websocket with callbacks
+        var host = "ws://192.168.3.74:8081/";
+        var ws = new WebSocket(host);
+        ws.onopen = function() {
+            print_log("connectted to websocket server: [" + host + "]");
+        };
+        ws.onclose = function() {
+            print_log('disconnectted');
+        };
+        ws.onmessage = function(event) {
+            print_output(event.data);
+        };
+
+        function send_command(input) {
+            ws.send(input);
+        }
+    </script>
+</html>
