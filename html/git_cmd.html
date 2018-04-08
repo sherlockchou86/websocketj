@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>cmd frontend</title>
+        <title>git cmd in browser</title>
         <style type="text/css">
             html,body{
                 height:95%;
@@ -37,10 +37,10 @@
         var host = "ws://192.168.3.74:8081/";
         var ws = new WebSocket(host);
         ws.onopen = function() {
-            print_log("connectted to websocket server: [" + host + "]");
+            print_log("Connected To WebSocket Server: [" + host + "]");
         };
         ws.onclose = function() {
-            print_log('disconnectted');
+            print_log('Disconnected');
         };
         ws.onmessage = function(event) {
             print_output(event.data);

@@ -52,7 +52,8 @@ public class TargetProcess {
 				@Override
 				public void run() {
 					try {
-						BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
+						// using GB2312 for Chinese OS, you can switch to utf-8 if you encounter the encoding is not right
+						BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "GB2312"));
 						String output = null; 
 						 while (process != null) {  
 							 output = br.readLine();

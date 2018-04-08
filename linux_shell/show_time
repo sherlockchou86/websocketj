@@ -1,0 +1,9 @@
+#! /bin/bash
+
+while [ true ]
+do
+echo "time from linux server:"$(date +%X)
+sleep 1 
+done
+
+exit 0

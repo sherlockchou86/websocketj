@@ -1,0 +1,37 @@
+<htm>
+    <head>
+        <title>show time from linux server</title>
+    </head>
+    <body>
+        <div id="msg" style="height:20px; width:500px;margin-top:20px; margin-left:auto;margin-right:auto; font-size:10px;text-align:center">
+        </div>
+
+        <div id="output" style="height:20px; width:500px;margin-top:100px; margin-left:auto;margin-right:auto; font-size:26px; text-align:center">
+        </div>
+    </body>
+
+    <script>
+        // helper function: log message to screen
+        function print_log(msg) {
+            document.getElementById('msg').textContent = msg;
+        }
+
+        function print_output(output) {
+            document.getElementById('output').textContent = output;
+        }
+
+         // setup websocket with callbacks
+         var host = "ws://192.168.3.246:8081/";
+        var ws = new WebSocket(host);
+        ws.onopen = function() {
+            print_log("Connected To WebSocket Server: => " + host);
+        };
+        ws.onclose = function() {
+            print_log('Disconnected');
+        };
+        ws.onmessage = function(event) {
+            print_output(event.data);
+        };
+
+    </script>
+</htm>
