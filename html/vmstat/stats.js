@@ -32,7 +32,7 @@ var descriptions = {
 }
 
 function streamStats() {
-
+    // create websocket client
     var ws = new WebSocket('ws://192.168.3.246:8081/');
     var lineCount;
     var colHeadings;
@@ -63,9 +63,11 @@ function streamStats() {
     };
 }
 
+// initialize the chart control
 function initCharts() {
+    var i = 0;
     Object.each(descriptions, function(sectionName, values) {
-        var section = $('.chart.template').clone().removeClass('template').appendTo('#charts');
+        var section = $('.chart.template').clone().removeClass('template').appendTo('#col' + (i ++) % 2);
 
         section.find('.title').text(sectionName);
 

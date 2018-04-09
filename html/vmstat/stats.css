@@ -9,12 +9,12 @@ body {
     color: #eee;
     font-family: "helvetica neue", helvetica, arial, sans-serif;
 }
-h2 {
+h3 {
     margin: 40px 0 0 0;
     font-weight: 300;
 }
 main {
-    width: 600px;
+    width: 1000px;
     margin: auto;
 }
 section {
